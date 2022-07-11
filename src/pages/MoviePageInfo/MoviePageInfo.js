@@ -1,12 +1,13 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMoviePageInfo } from 'services/moviesApi';
 import s from './MoviePageInfo.module.css';
 
 export const MoviePageInfo = () => {
+  const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  console.log(movie);
+  //   console.log(movie);
   useEffect(() => {
     getMoviePageInfo(movieId)
       .then(data => setMovie(data))
@@ -34,6 +35,22 @@ export const MoviePageInfo = () => {
           </div>
         </div>
       )}
+      <div className={s.dopInfo}>
+        <h2>Additional information</h2>
+        <ul>
+          <li>
+            <Link to="cast" state={{ from: location }}>
+              Cast
+            </Link>
+          </li>
+          <li>
+            <Link to="reviews" state={{ from: location }}>
+              Reviews
+            </Link>
+          </li>
+        </ul>
+        <Outlet />
+      </div>
     </>
   );
 };

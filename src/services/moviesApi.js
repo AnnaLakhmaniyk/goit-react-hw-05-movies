@@ -15,5 +15,11 @@ const getMoviePageInfo = async movie_id => {
   );
   return movie.data;
 };
+const getCastInfo = async movie_id => {
+  const cast = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movie_id}/credits?api_key=${KEY}`
+  );
+  return cast.data.cast;
+};
 
-export { getTrendingMovies, getMoviePageInfo };
+export { getTrendingMovies, getMoviePageInfo, getCastInfo };
