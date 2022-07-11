@@ -1,8 +1,6 @@
 .list{
     padding: 0;
-       
-            line-height: 1.7;
-            letter-spacing: 0.03em;
+ letter-spacing: 0.03em;
 }
 .item{
 font-size: 18px;
