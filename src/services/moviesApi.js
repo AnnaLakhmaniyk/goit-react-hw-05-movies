@@ -9,4 +9,11 @@ const getTrendingMovies = async () => {
   return data;
 };
 
-export { getTrendingMovies };
+const getMoviePageInfo = async movie_id => {
+  const movie = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${KEY}`
+  );
+  return movie.data;
+};
+
+export { getTrendingMovies, getMoviePageInfo };
