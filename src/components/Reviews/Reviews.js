@@ -5,7 +5,7 @@ import { getReviewsInifo } from 'services/moviesApi';
 export const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
+  // console.log(reviews);
 
   useEffect(() => {
     getReviewsInifo(movieId)
