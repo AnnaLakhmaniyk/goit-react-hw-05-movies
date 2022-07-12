@@ -5,13 +5,13 @@ export const HeaderNav = () => {
     <nav className={s.header}>
       <NavLink
         to="/"
-        className={({ isActive }) => (isActive ? s.activeLink : s.link)}
+        className={({ isActive }) => (isActive ? s.active : s.unactive)}
       >
         Home
       </NavLink>
       <NavLink
         to="/movies"
-        className={({ isActive }) => (isActive ? s.activeLink : s.link)}
+        className={({ isActive }) => (isActive ? s.active : s.unactive)}
       >
         Movies
       </NavLink>
