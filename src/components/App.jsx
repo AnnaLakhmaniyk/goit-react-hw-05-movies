@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { HeaderNav } from './HeaderNav/HeaderNav';
 import { Home } from 'pages/Home/Home';
 import { MovieSearch } from 'pages/MovieSearch/MovieSearch';
@@ -18,6 +20,7 @@ export const App = () => {
           <Route path="/movies/:movieId/reviews" element={<Reviews />} />
         </Route>
       </Routes>
+      <ToastContainer autoClose={3000} />
     </div>
   );
 };
