@@ -18,7 +18,7 @@ export const MoviePageInfo = () => {
     <>
       <Link to={backHome}>
         <button className={s.btn} type="button">
-          GO HOME
+          GO back
         </button>
       </Link>
 
