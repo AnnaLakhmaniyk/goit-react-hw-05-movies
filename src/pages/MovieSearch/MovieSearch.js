@@ -5,7 +5,7 @@ import { getMovieSearch } from 'services/moviesApi';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { FormMovieSearch } from 'components/FormMovieSearch/FormMovieSearch';
 import s from './MovieSearch.module.css';
-export const MovieSearch = () => {
+const MovieSearch = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -36,3 +36,4 @@ export const MovieSearch = () => {
     </main>
   );
 };
+export default MovieSearch;

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getMoviePageInfo } from 'services/moviesApi';
 import s from './MoviePageInfo.module.css';
 
-export const MoviePageInfo = () => {
+const MoviePageInfo = () => {
   const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -62,3 +62,5 @@ export const MoviePageInfo = () => {
     </>
   );
 };
+
+export default MoviePageInfo;
