@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { getMovieSearch } from 'services/moviesApi';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { FormMovieSearch } from 'components/FormMovieSearch/FormMovieSearch';
+import s from './MovieSearch.module.css';
 export const MovieSearch = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchParams] = useSearchParams();
@@ -21,14 +23,14 @@ export const MovieSearch = () => {
       .then(data => {
         setSearchMovie(data);
         if (data.length === 0) {
-          console.log('sory');
+          toast.error(`Sorry, not found`);
         }
       })
       .catch(error => console.log(error));
   }, [movieName]);
 
   return (
-    <main>
+    <main className={s.wrap}>
       <FormMovieSearch onSubmit={handleSubmit} />
       {searchMovie && <MoviesList movies={searchMovie} />}
     </main>
