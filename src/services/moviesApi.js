@@ -21,5 +21,23 @@ const getCastInfo = async movie_id => {
   );
   return cast.data.cast;
 };
+const getReviewsInifo = async movie_id => {
+  const reviews = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movie_id}/reviews?api_key=${KEY}`
+  );
+  return reviews.data.results;
+};
+const getMovieSearch = async query => {
+  const movie = await axios.get(
+    `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}&language=en-US&page=1&include_adult=false`
+  );
+  return movie.data.results;
+};
 
-export { getTrendingMovies, getMoviePageInfo, getCastInfo };
+export {
+  getTrendingMovies,
+  getMoviePageInfo,
+  getCastInfo,
+  getReviewsInifo,
+  getMovieSearch,
+};
