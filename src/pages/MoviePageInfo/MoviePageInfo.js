@@ -7,7 +7,7 @@ export const MoviePageInfo = () => {
   const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  //   console.log(movie);
+  const backHome = location?.state?.from || '/';
   useEffect(() => {
     getMoviePageInfo(movieId)
       .then(data => setMovie(data))
@@ -16,10 +16,16 @@ export const MoviePageInfo = () => {
 
   return (
     <>
+      <Link to={backHome}>
+        <button className={s.btn} type="button">
+          GO HOME
+        </button>
+      </Link>
+
       {movie && (
         <div className={s.wrap}>
           <img
-            src={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.original_title}
             width="350px"
           />
@@ -36,19 +42,21 @@ export const MoviePageInfo = () => {
         </div>
       )}
       <div className={s.dopInfo}>
-        <h2>Additional information</h2>
-        <ul>
-          <li>
-            <Link to="cast" state={{ from: location }}>
-              Cast
-            </Link>
-          </li>
-          <li>
-            <Link to="reviews" state={{ from: location }}>
-              Reviews
-            </Link>
-          </li>
-        </ul>
+        <div className={s.link}>
+          <h2>Additional information</h2>
+          <ul className={s.list}>
+            <li>
+              <Link to="cast" state={{ from: location?.state?.from ?? '/' }}>
+                Cast
+              </Link>
+            </li>
+            <li>
+              <Link to="reviews" state={{ from: location?.state?.from ?? '/' }}>
+                Reviews
+              </Link>
+            </li>
+          </ul>
+        </div>
         <Outlet />
       </div>
     </>
