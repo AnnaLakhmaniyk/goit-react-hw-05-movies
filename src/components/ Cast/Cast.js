@@ -1,14 +1,16 @@
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastInfo } from 'services/moviesApi';
-import { useState, useEffect } from 'react';
 import s from './Cast.module.css';
 
 export const Cast = () => {
   const [casts, setCasts] = useState([]);
   const { movieId } = useParams();
-  //   console.log(casts);
+  // console.log(casts);
   useEffect(() => {
-    getCastInfo(movieId).then(data => setCasts(data));
+    getCastInfo(movieId)
+      .then(data => setCasts(data))
+      .catch(error => console.log(error));
   }, [movieId]);
   return (
     <div className={s.wrap}>
@@ -22,10 +24,10 @@ export const Cast = () => {
                   : 'https://sd.keepcalms.com/i-w600/sorry-poster-is-missing.jpg'
               }
               alt={name}
-              width="150"
+              width="200"
               height="200"
             />
-            <p>{name}</p>
+            <h3>{name}</h3>
           </li>
         ))}
       </ul>
