@@ -3,8 +3,8 @@ import { HeaderNav } from './HeaderNav/HeaderNav';
 import { Home } from 'pages/Home/Home';
 import { MovieSearch } from 'pages/MovieSearch/MovieSearch';
 import { MoviePageInfo } from 'pages/MoviePageInfo/MoviePageInfo';
-import { Cast } from 'pages/ Cast/Cast';
-import { Reviews } from 'pages/Reviews/Reviews';
+import { Cast } from 'components/ Cast/Cast';
+import { Reviews } from 'components/Reviews/Reviews';
 
 export const App = () => {
   return (
