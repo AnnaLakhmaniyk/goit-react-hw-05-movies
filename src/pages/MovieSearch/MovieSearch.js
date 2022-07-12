@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { getMovieSearch } from 'services/moviesApi';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-
+import { FormMovieSearch } from 'components/FormMovieSearch/FormMovieSearch';
 export const MovieSearch = () => {
   const [searchMovie, setSearchMovie] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams({});
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const movieName = searchParams.get('query');
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-
-    setSearchParams({
-      query: evt.target.elements.query.value.toLowerCase().trim(),
-    });
+  const handleSubmit = query => {
+    navigate({ search: `query=${query}` });
   };
 
   useEffect(() => {
@@ -23,23 +19,17 @@ export const MovieSearch = () => {
     }
     getMovieSearch(movieName)
       .then(data => {
-        console.log(data);
         setSearchMovie(data);
-        // if (data.length === 0) {
-        //   console.log(`Sorry`);
-        //   return;
-        // }
+        if (data.length === 0) {
+          console.log('sory');
+        }
       })
       .catch(error => console.log(error));
   }, [movieName]);
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" />
-        <button type="submit">Search</button>
-      </form>
-      <Link to={location?.state?.from ?? '/movie'}></Link>
+      <FormMovieSearch onSubmit={handleSubmit} />
       {searchMovie && <MoviesList movies={searchMovie} />}
     </main>
   );
